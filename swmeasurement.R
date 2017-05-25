@@ -39,8 +39,8 @@ rand_generater<- function(){
    return(rand_num_df)
   
 }
-
-    #print(rand_generater())
+    #starts here!!!!!!!!!!!!
+     #print(rand_generater())
  random_Numbers<- rand_generater()
  random_Numbers[3]
  typeof(random_Numbers)
@@ -71,8 +71,42 @@ rand_generater<- function(){
       {
         max_Number= random_Numbers[i]
       }
+      else{}
       
     }
+    
+#Finding median
+    s<- length(random_Numbers)
+    print(s)
+    #to find median first sort the vector 
+    sorted_Random_Numbers<-random_Numbers
+   #Decreasing order 
+    for (i in 1:99)
+    {
+      for (j in 1:99)
+      {
+        if (sorted_Random_Numbers[j] > sorted_Random_Numbers[j+1])
+        {
+          swap       = sorted_Random_Numbers[j];
+          sorted_Random_Numbers[j]   = sorted_Random_Numbers[j+1];
+          sorted_Random_Numbers[j+1] = swap;
+        }
+      }
+    }
+    
+    to_sort
+    if((s %% 2) == 0){
+      a<-s/2;
+      b<-a+1
+      random_Numbers_median=(to_sort[a]+to_sort[b])/2
+    }
+    if(!(s %% 2) == 0){
+      a<-ceiling(s/2) ;
+      random_Numbers_median=to_sort[a]
+    }
+#standard deviation
+    
+    
 #FINDING MEAN 
     for(i in 1:100)
     {
@@ -80,7 +114,8 @@ rand_generater<- function(){
       
     }
     
-    random_Numbers_Median <- sum_Random_Numbers/100
+    random_Numbers_Mean <- sum_Random_Numbers/100
     min_Number
     max_Number
-    random_Numbers_Median
+    random_Numbers_Mean
+    random_Numbers_median
