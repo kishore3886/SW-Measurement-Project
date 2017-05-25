@@ -5,7 +5,7 @@
 
 #middle square method
 
-size<-4
+#size<-4
 seed<-1234
 seed_square=0
 start=0
@@ -28,8 +28,8 @@ rand_generater<- function(){
     }
     else
     {}
-    start = floor(size/2)-1
-    end = start+3
+    start = floor(size/2)
+    end = start+digits-1
     seed_char<-substr(seed_square_string, start, end)
     print(seed_char)
     seed<-as.numeric(seed_char)
