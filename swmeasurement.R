@@ -46,7 +46,8 @@ rand_generater<- function(){
  typeof(random_Numbers)
  print(length(random_Numbers))
     #print(seed_square)
-    min_Number=2565
+    min_Number= random_Numbers[3]
+
     max_Number=0
     random_Numbers_median=0
     typeof(random_Numbers_median)
