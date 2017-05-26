@@ -105,7 +105,8 @@ rand_generater<- function(){
       a<-ceiling(s/2) ;
       random_Numbers_median=to_sort[a]
     }
-#standard deviation
+
+    
     
     
 #FINDING MEAN 
@@ -116,7 +117,20 @@ rand_generater<- function(){
     }
     
     random_Numbers_Mean <- sum_Random_Numbers/100
+ 
+
+    
+#standard deviation
+    standardDeviation=0
+      for(i in random_Numbers)
+        standardDeviation =standardDeviation+ (pow(random_Numbers[i] - random_Numbers_Mean, 2));
+      
+      standardDeviation= sqrt(standardDeviation/100)
+    
+    
     min_Number
     max_Number
     random_Numbers_Mean
     random_Numbers_median
+    standardDeviation
+    
