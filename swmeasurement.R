@@ -10,13 +10,12 @@ seed<-1234
 seed_square=0
 start=0
 end=0
-sum_Random_Numbers=0
 #rand_num_df<- data.frame(number=numeric())
 rand_num_df<-numeric(100)
 
 rand_generater<- function(){
   
-  print(seed)
+  #print(seed)
   for(i in 1:100)
   {
     seed_square=seed*seed
@@ -44,8 +43,8 @@ cal_Minimum<-function(){
   min_Number_Local= random_Numbers[3]
   for(i in 1:100)
   {
-    print(i)
-    print(random_Numbers[i])
+    #print(i)
+    #rint(random_Numbers[i])
     if(random_Numbers[i]<min_Number_Local)
     {
       min_Number_Local= random_Numbers[i]
@@ -88,10 +87,86 @@ cal_Median<- function(){
         sorted_Random_Numbers[j+1] = swap;
       }
     }
-  }  
+    
+  }
+#sorting Done  
+  if((s %% 2) == 0){
+    a<-s/2;
+    b<-a+1
+    random_Numbers_median_Local=(sorted_Random_Numbers[a]+to_sort[b])/2
+  }
+  if(!(s %% 2) == 0){
+    a<-ceiling(s/2) ;
+    random_Numbers_median_Local=sorted_Random_Numbers[a]
+  }
+  
+  return(random_Numbers_median_Local)
+}
+cal_Mean<- function(){
+  sum_Random_Numbers=0
+  random_Numbers_Mean_local=0
+  for(i in 1:100)
+  {
+    sum_Random_Numbers<-sum_Random_Numbers+random_Numbers[i]
+    
+  }
+  
+  random_Numbers_Mean_local <- sum_Random_Numbers/100
+  
+  return(random_Numbers_Mean_local)
+}
+cal_StandardDeviation<-function(){
+  
+  standardDeviation_random_numbers=0
+  variance_random_numbers=0
+  for(i in random_Numbers)
+    variance_random_numbers =variance_random_numbers+ ((i - random_Numbers_Mean)^ 2);
+  
+  standardDeviation_random_numbers= sqrt(variance_random_numbers/100)
   
 }
-
+cal_Mode<- function(){
+  maxCount <- 0;
+  modeValue <- 0;
+  
+  
+  for (i in 1:99)
+  {
+    for (j in 1:99)
+    {
+      if (sorted_Random_Numbers[j] > sorted_Random_Numbers[j+1])
+      {
+        swap = sorted_Random_Numbers[j];
+        sorted_Random_Numbers[j]   = sorted_Random_Numbers[j+1];
+        sorted_Random_Numbers[j+1] = swap;
+      }
+    }
+    
+  }
+  tally<-numeric(100)
+  for (i in 1:99) 
+  {
+    for(z in 1:9)
+    {
+      
+      if(sorted_Random_Numbers[i]==sorted_Random_Numbers[z])
+      {
+        tally[i]=tally[i]+1
+      }
+    }
+  }
+  
+    for (i in 1:100) 
+  {
+    if (tally[i] > maxCount) 
+    {
+      maxCount <- tally[i];
+      modeValue <- sorted_Random_Numbers[i];
+    }
+    }
+  print(maxCount)
+  return(modeValue)
+}
 #starts here----------------------------------------------------------------------
 
 random_Numbers<- rand_generater()
@@ -99,52 +174,15 @@ min_Number<-cal_Minimum()
 max_Number<-cal_Maximum()
 random_Numbers_median<-cal_Median()
 random_Numbers_Mean<-cal_Mean()
-random_Numbers_StandardDeviation<-cal_Standard_Deviation()
-    typeof(random_Numbers_median)
+random_Numbers_StandardDeviation<-cal_StandardDeviation()
+random_Numbers_Mode<-cal_Mode()
 
-    
-    
-    
-#Finding median
-
-    
-    to_sort
-    if((s %% 2) == 0){
-      a<-s/2;
-      b<-a+1
-      random_Numbers_median=(to_sort[a]+to_sort[b])/2
-    }
-    if(!(s %% 2) == 0){
-      a<-ceiling(s/2) ;
-      random_Numbers_median=to_sort[a]
-    }
-
-    
-    
-    
-#FINDING MEAN 
-    for(i in 1:100)
-    {
-      sum_Random_Numbers<-sum_Random_Numbers+random_Numbers[i]
-      
-    }
-    
-    random_Numbers_Mean <- sum_Random_Numbers/100
- 
-
-    
-#standard deviation
-    standardDeviation_random_numbers=0
-    variance_random_numbers=0
-      for(i in random_Numbers)
-        variance_random_numbers =variance_random_numbers+ ((i - random_Numbers_Mean)^ 2);
-      
-      standardDeviation_random_numbers= sqrt(variance_random_numbers/100)
-      syscal<-sd(random_Numbers) 
-      syscal
+#syscal<-sd(random_Numbers) 
+# syscal
     min_Number
     max_Number
     random_Numbers_Mean
     random_Numbers_median
     standardDeviation_random_numbers
-    
+    random_Numbers_Mode
+      
