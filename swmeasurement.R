@@ -6,7 +6,8 @@
 #middle square method
 
 digits<-4
-seed<-1234
+seed<-9999
+random_Numbers_median_Local<-0
 
 start=0
 end=0
@@ -74,6 +75,7 @@ cal_Maximum<- function(){
   }
   return(max_Number_Local)
 }
+
 cal_Median_Random<- function(){
   
   random_Numbers_median_Local=0
@@ -135,7 +137,7 @@ cal_Mode<- function(){
   maxCount <- 0;
   modeValue <- 0;
   
-  sorted_Random_Numbers<-rand_num_df
+  sorted_Random_Numbers<-random_Numbers
   for (i in 1:99)
   {
     for (j in 1:99)
@@ -173,6 +175,40 @@ cal_Mode<- function(){
   print(maxCount)
   return(modeValue)
 }
+fn <- function(){
+  
+  sorted_Random_Numbers<-random_Numbers
+  #Decreasing order 
+  for (i in 1:99)
+  {
+    for (j in 1:99)
+    {
+      if (sorted_Random_Numbers[j] > sorted_Random_Numbers[j+1])
+      {
+        swap = sorted_Random_Numbers[j];
+        sorted_Random_Numbers[j]   = sorted_Random_Numbers[j+1];
+        sorted_Random_Numbers[j+1] = swap;
+      }
+    }
+  }
+  sorted_Random_Numbers
+  #sorting Done  
+  s<-length(sorted_Random_Numbers)
+  if((s %% 2) == 0){
+    a<-s/2;
+    b<-a+1
+    random_Numbers_median_Local<-(sorted_Random_Numbers[a]+sorted_Random_Numbers[b])/2
+  }
+  if(!(s %% 2) == 0){
+    a<-ceiling(s/2) ;
+    random_Numbers_median_Local<-sorted_Random_Numbers[a]
+  }
+  print(random_Numbers_median_Local) 
+  return(random_Numbers_median_Local)
+}
+
+
+
 #starts here----------------------------------------------------------------------
 
 random_Numbers<- rand_generater()
@@ -181,14 +217,13 @@ max_Number<-cal_Maximum()
 random_Numbers_Mean<-cal_Mean()
 random_Numbers_StandardDeviation<-cal_StandardDeviation()
 random_Numbers_Mode<-cal_Mode()
+random_Numbers_Median<-fn()
 
-#syscal<-sd(random_Numbers) 
-# syscal
 random_Numbers
+sorted_Random_Numbers
     min_Number
     max_Number
     random_Numbers_Mean
-    #random_Numbers_median
     random_Numbers_StandardDeviation
     random_Numbers_Mode
-      
+    random_Numbers_Median
