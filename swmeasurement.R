@@ -5,9 +5,9 @@
 
 #middle square method
 
-#size<-4
+digits<-4
 seed<-1234
-seed_square=0
+
 start=0
 end=0
 #rand_num_df<- data.frame(number=numeric())
@@ -18,9 +18,9 @@ rand_generater<- function(){
   #print(seed)
   for(i in 1:100)
   {
-    seed_square=seed*seed
+    seed_square<-seed*seed
     seed_square_string<- toString(seed_square) 
-    size=nchar(seed_square_string)
+    size<-nchar(seed_square_string)
     if(size/2!=0)
     {
       seed_square_string=paste("0",seed_square_string) 
@@ -29,11 +29,17 @@ rand_generater<- function(){
     else
     {}
     start = floor(size/2)
-    end = start+digits-1
-    seed_char<-substr(seed_square_string, start, end)
+    end_seed = start+digits-1
+    end=start+1
+    #for seed to the next random numer generating
+    seed_char<-substr(seed_square_string, start, end_seed)
+    #random number
+    rand_number_char<-substr(seed_square_string, start, end)
     print(seed_char)
     seed<-as.numeric(seed_char)
-    rand_num_df [i]<-seed    
+    rand_Local<- as.numeric(rand_number_char)
+    
+    rand_num_df [i]<-rand_Local    
   }
    return(rand_num_df)
   
@@ -68,7 +74,7 @@ cal_Maximum<- function(){
   }
   return(max_Number_Local)
 }
-cal_Median<- function(){
+cal_Median_Random<- function(){
   
   random_Numbers_median_Local=0
   #s<- length(random_Numbers)
@@ -129,7 +135,7 @@ cal_Mode<- function(){
   maxCount <- 0;
   modeValue <- 0;
   
-  
+  sorted_Random_Numbers<-rand_num_df
   for (i in 1:99)
   {
     for (j in 1:99)
@@ -146,7 +152,7 @@ cal_Mode<- function(){
   tally<-numeric(100)
   for (i in 1:99) 
   {
-    for(z in 1:9)
+    for(z in 1:99)
     {
       
       if(sorted_Random_Numbers[i]==sorted_Random_Numbers[z])
@@ -163,7 +169,7 @@ cal_Mode<- function(){
       maxCount <- tally[i];
       modeValue <- sorted_Random_Numbers[i];
     }
-    }
+  }
   print(maxCount)
   return(modeValue)
 }
@@ -172,17 +178,17 @@ cal_Mode<- function(){
 random_Numbers<- rand_generater()
 min_Number<-cal_Minimum()
 max_Number<-cal_Maximum()
-random_Numbers_median<-cal_Median()
 random_Numbers_Mean<-cal_Mean()
 random_Numbers_StandardDeviation<-cal_StandardDeviation()
 random_Numbers_Mode<-cal_Mode()
 
 #syscal<-sd(random_Numbers) 
 # syscal
+random_Numbers
     min_Number
     max_Number
     random_Numbers_Mean
-    random_Numbers_median
-    standardDeviation_random_numbers
+    #random_Numbers_median
+    random_Numbers_StandardDeviation
     random_Numbers_Mode
       
