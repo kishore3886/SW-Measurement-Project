@@ -227,3 +227,15 @@ sorted_Random_Numbers
     random_Numbers_StandardDeviation
     random_Numbers_Mode
     random_Numbers_Median
+  #Testing the results------------------------------------------------  
+    
+    boxplot(random_Numbers)
+  #to show all numbers are generated randomly   
+    plot(random_Numbers)
+    abline(a=0,b=1)
+  # testing for mean Hypothesis testing 
+    test_cal <-t.test(random_Numbers, alternative = "two.sided",mu=60,conf.int=0.95)
+    test_cal
+  #df- Degrees of freedom 
+    (49.91-60)/(sd(random_Numbers)/sqrt(length(random_Numbers)))
+    
